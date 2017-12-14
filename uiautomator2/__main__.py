@@ -70,6 +70,8 @@ def cache_download(url, filename=None):
         log.debug("file '%s' cached before", filename)
         return storepath
     # download from url
+    proxies = {"http": "http://proxy.oa.com:8080","https": "http://proxy.oa.com:8080"}
+    r = requests.get(url, stream=True,proxies=proxies)
     r = requests.get(url, stream=True)
     log.debug("download from %s", url)
     if r.status_code != 200:
